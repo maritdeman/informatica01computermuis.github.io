@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="stylesheet_po.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    .knop {
+        position: absolute; 
+        width: 50%;
+        font-size: 50px;
+        height: 80px;
+        -webkit-user-select: none; /* Safari */        
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none;
+    }
+</style>
+</head>
+<body onresize="resize()">
+
+<ul class="topnav">
+ <li> <a href="home.html">Home</a></li>
+ <li> <a href="news.html">Ontwikkelingen</a></li>
+ <li><a class="active" href="about.html">Geschiedenis</a></li>
+ <li> <a href="contact.html">Contact</a></li>
+</ul>
+
+<div id="tijdbalk" style="position: absolute; width: 100%; height: 10px; top: 148px; left:0;background-color: black;"> <!-- balk -->
+    <div id="punt" style="position:absolute;width:40px;height:40px;border-radius:20px;top:-15px;background-color:black;"> <!-- punt -->
+        <div style="position:absolute;left:10px;top:10px;width:20px;height:20px;background-color: white;border-radius: 10px;"></div>
+        <div id="jaartal" style="position:absolute;height:20px;top:-40px;width:480px;left:-220px;text-align: center;font-size: 30px;color:black;"> <!-- jaartal -->
+            1978
+        </div>
+        <div id="geschiedenis" style="position: absolute; width: 500px; left: -230px; top: 70px; border-radius: 10px;padding:10px 10px 10px 10px;border: 20px solid lightgray"> <!-- tekst -->
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="knop" style="left:0;text-align: left;" onclick="click_knop(-1)"> <!-- linker knop -->
+    &lt;
+</div>
+<div class="knop" style="left:50%;text-align: right;" onclick="click_knop(1)"> <!-- rechter knop -->
+    &gt;
+</div>
+
+<p id="text0" style="display:none">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum lorem enim. Donec pharetra, massa ac ultricies tempus, quam mi lobortis felis, a semper neque nulla et tortor. Suspendisse potenti. Ut elementum ullamcorper ante eu tristique. Morbi eget posuere ipsum, eget blandit orci. Praesent ultrices commodo magna, quis porttitor risus vulputate suscipit. Mauris dictum ut lacus lacinia pharetra. Vivamus molestie mauris erat, eu pharetra nulla finibus ac. Curabitur efficitur, metus eu interdum aliquet, metus elit posuere ipsum, vel rhoncus ante neque id ex. In bibendum faucibus finibus. Fusce feugiat dignissim turpis. Morbi lacinia nec tellus sollicitudin vestibulum.
+
+Donec accumsan orci non mollis faucibus. Nulla facilisi. Nam vel interdum sem, sit amet varius nulla. Curabitur id consequat tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget purus lorem. Nunc vitae metus hendrerit, lobortis augue at, ultricies risus. Donec varius consectetur posuere. Ut ut scelerisque arcu. Donec sit amet efficitur elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc facilisis aliquet nisl, id consequat odio suscipit in. Nulla egestas eu tortor sit amet consectetur. Nam sagittis tempus augue eu tincidunt. Donec orci metus, varius sit amet nunc eget, viverra porttitor metus.
+
+Pellentesque pulvinar ultricies urna, et vulputate elit efficitur eget. Pellentesque consectetur porta tortor vel congue. Donec nisi est, finibus eget nibh ut, egestas rutrum ligula. Praesent malesuada lobortis fermentum. Suspendisse consectetur dictum libero a commodo. Ut libero lacus, mollis vel tempor facilisis, consectetur congue est. Mauris rutrum ipsum et mauris interdum, ut fermentum nisl lacinia. Nulla non aliquam sem. Ut rhoncus auctor scelerisque.
+</p>
+<p id="text1" style="display:none">
+    hu pp e lel s difj
+</p>
+<p id="text2" style="display:none">
+    sdkkfsidfasdfj
+</p>
+<p id="text3" style="display:none">
+    tralalalala
+</p>
+
+</body>
+<script>
+const jaartallen = [1978, 6543, 2021, 2022];
+const text_ids = ["text0", "text1", "text2", "text3"];
+var index = 0;
+
+function resize(){
+    var breedte = window.innerWidth;
+    document.getElementById("punt").style.left = (breedte / 2 - 20) + "px";
+    if (breedte < 600){
+        document.getElementById("tijdbalk").style.top = "292px";
+        document.getElementById("geschiedenis").style.width = (breedte * 0.95 - 40) + "px";
+        document.getElementById("geschiedenis").style.left = (breedte * 0.025 - (breedte / 2 - 20) + 20) + "px";
+    } else {
+        document.getElementById("tijdbalk").style.top = "148px";
+        document.getElementById("geschiedenis").style.width = "500px";
+        document.getElementById("geschiedenis").style.left = "-230px";
+    }
+}
+resize();
+
+function click_knop(stap){
+    index += stap;
+    if (index == -1){
+        index = jaartallen.length - 1;
+    }
+    if (index == jaartallen.length){
+        index = 0;
+    }
+    document.getElementById("jaartal").innerHTML = jaartallen[index];
+    document.getElementById("geschiedenis").innerHTML = document.getElementById(text_ids[index]).innerHTML;
+}
+click_knop(0);
+
+</script>
+</html>
+
+
+
+
+
